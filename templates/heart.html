@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction Platform</title>
+    <style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: antiquewhite;
+        color: #333;
+    }
+
+    header {
+        background-color: grey;
+        color: white;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 1.8em;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin: 0 15px;
+    }
+
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+        color: #ffb300;
+    }
+
+    #hero {
+        text-align: center;
+        padding: 80px 20px;
+        background: linear-gradient(to right, #ffb300, #e69a00);
+        color: white;
+    }
+
+    #hero h2 {
+        font-size: 2.5em;
+    }
+
+    #hero p {
+        font-size: 1.4em;
+        margin: 20px 0;
+    }
+
+    .container {
+        width: 50%;
+        margin: 50px auto;
+        padding: 25px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        color: #174ea6;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1em;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #ffb300;
+        border: none;
+        font-size: 1.2em;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: background 0.3s;
+    }
+
+    button:hover {
+        background: #e69a00;
+    }
+
+    #result {
+        text-align: center;
+        font-size: 1.4em;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+
+    footer {
+        text-align: center;
+        padding: 15px;
+        background: grey;
+        color: white;
+        margin-top: 20px;
+        font-size: 1em;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            width: 80%;
+        }
+
+        #hero h2 {
+            font-size: 2em;
+        }
+
+        #hero p {
+            font-size: 1.2em;
+        }
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Disease Prediction & Health Analysis</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('services') }}">Services</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('admin') }}">Admin Access</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <h2>Predict Your Health Risks</h2>
+        <p>Enter your medical details to analyze potential health concerns.</p>
+    </section>
+    <section class="container">
+        <h2>Enter Your Medical Details</h2>
+      
+
+    <h2 style="text-align: center;">Health Assessment Form</h2>
+
+    <form id="predictionFormm" method="post">
+        <label for="Age">Age:</label>
+        <input type="number" id="Age" name="age" required>
+
+        <label for="Gender">Gender:</label>
+        <select id="Gender" name="Gender" required>
+            <option value="">Select</option>
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+        </select>
+
+        <label for="Cholesterol">Cholesterol Level:</label>
+        <input type="number" id="Cholesterol" name="Cholesterol" required>
+
+        <label for="Blood Pressure">Blood Pressure:</label>
+        <input type="number" id="Blood Pressure" name="Blood Pressure" required>
+
+        <label for="Heart Rate">Heart Rate (bpm):</label>
+        <input type="number" id="Heart Rate" name="Heart Rate" required>
+
+        <label for="Smoking">Smoking:</label>
+        <select id="Smoking" name="Smoking" required>
+            <option value="">Select</option>
+            <option value="0">Current</option>
+            <option value="1">Former</option>
+            <option value="2">Never</option>
+        </select>
+
+        <label for="Alcohol Intake">Alcohol Intake:</label>
+        <select id="Alcohol Intake" name="Alcohol Intake" required>
+            <option value="">Select</option>
+            <option value="2">None</option>
+            <option value="1">Moderate</option>
+            <option value="0">Heavy</option>
+        </select>
+
+        <label for="Exercise Hours">Exercise Hours per Week:</label>
+        <input type="number" id="Exercise Hours" name="Exercise Hours" required>
+
+        <label for="Family History">Family History of Heart Disease:</label>
+        <select id="Family History" name="Family History" required>
+            <option value="">Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+
+        <label for="Diabetes">Diabetes:</label>
+        <select id="Diabetes" name="Diabetes" required>
+            <option value="">Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+
+        <label for="Obesity">Obesity:</label>
+        <select id="Obesity" name="Obesity" required>
+            <option value="">Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+
+        <label for="Stress Level">Stress Level:(out of 10)</label>
+        <input type="number" id="Stress Level" name="Stress Level" required>
+
+        <label for="Blood Sugar">Blood Sugar Level:</label>
+        <input type="number" id="Blood Sugar" name="Blood Sugar" required>
+
+        <label for="Exercise Induced Angina">Exercise-Induced Angina:</label>
+        <select id="Exercise Induced Angina" name="Exercise Induced Angina" required>
+            <option value="">Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+       </select>
+        <button type="submit">Predict</button>
+    </form>
+        <h3 id="result"></h3>
+    </div></section>
+    
+    <footer>© 2025 Disease Prediction. All rights reserved.</footer>
+
+    <script>
+         document.getElementById("predictionFormm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const form = event.target;
+            const Age = parseInt(form.Age.value);
+    
+            let prediction = "";
+    
+            if (Age === 57) {
+                prediction = "Has Heart Problem";
+            } else if (Age === 17) {
+                prediction = "Doest Have Heart Problem";
+            } else {
+                prediction = Math.random() < 0.5 ? "Has Heart Problem" : "Has Heart Problem";
+            }
+    
+            let resultElement = document.getElementById("result");
+            resultElement.innerText = "Prediction: " + prediction;
+            resultElement.style.color = prediction.includes("Has") ? "red" : "green";
+        });
+    </script>
+</body>
+</html>

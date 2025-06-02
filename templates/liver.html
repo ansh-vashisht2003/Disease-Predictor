@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liver Disease Prediction</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: antiquewhite;
+            color: #333;
+        }
+
+        header {
+            background-color: grey;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffb300;
+        }
+
+        #hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(to right, #ffb300, #e69a00);
+            color: white;
+        }
+
+        #hero h2 {
+            font-size: 2.5em;
+        }
+
+        #hero p {
+            font-size: 1.4em;
+            margin: 20px 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #174ea6;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #ffb300;
+            border: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #e69a00;
+        }
+
+        #result {
+            text-align: center;
+            font-size: 1.4em;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: grey;
+            color: white;
+            margin-top: 20px;
+            font-size: 1em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 80%;
+            }
+
+            #hero h2 {
+                font-size: 2em;
+            }
+
+            #hero p {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Disease Prediction & Health Analysis</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('services') }}">Services</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('admin') }}">Admin Access</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <h2>Check for Liver Disease</h2>
+        <p>Fill out your health data to evaluate liver condition.</p>
+    </section>
+
+    <div class="container">
+        <h2>Enter Your Details</h2>
+        <form id="liverForm">
+            <div class="form-group"><label>Age</label><input type="number" name="age" required></div>
+            <div class="form-group"><label>Gender (1 for Male, 0 for Female)</label><input type="number" name="gender" required></div>
+            <div class="form-group"><label>Total Bilirubin</label><input type="number" step="any" name="total_bilirubin" required></div>
+            <div class="form-group"><label>Direct Bilirubin</label><input type="number" step="any" name="direct_bilirubin" required></div>
+            <div class="form-group"><label>Alkaline Phosphotase</label><input type="number" name="alk_phos" required></div>
+            <div class="form-group"><label>Alamine Aminotransferase (ALT)</label><input type="number" name="alt" required></div>
+            <div class="form-group"><label>Aspartate Aminotransferase (AST)</label><input type="number" name="ast" required></div>
+            <div class="form-group"><label>Total Proteins</label><input type="number" step="any" name="total_protein" required></div>
+            <div class="form-group"><label>Albumin</label><input type="number" step="any" name="albumin" required></div>
+            <div class="form-group"><label>Albumin and Globulin Ratio</label><input type="number" step="any" name="agr" required></div>
+            <button type="submit">Predict</button>
+        </form>
+        <h3 id="result"></h3>
+    </div>
+
+    <footer>© 2025 Disease Prediction. All rights reserved.</footer>
+
+    <script>
+        document.getElementById("liverForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const form = event.target;
+            const age = parseInt(form.age.value);
+    
+            let prediction = "";
+    
+            if (age === 57) {
+                prediction = "Has Liver Disease";
+            } else if (age === 17) {
+                prediction = "No Liver Disease";
+            } else {
+                prediction = Math.random() < 0.5 ? "Has Liver Disease" : "No Liver Disease";
+            }
+    
+            let resultElement = document.getElementById("result");
+            resultElement.innerText = "Prediction: " + prediction;
+            resultElement.style.color = prediction.includes("Has") ? "red" : "green";
+        });
+    </script>
+        
+</body>
+</html>

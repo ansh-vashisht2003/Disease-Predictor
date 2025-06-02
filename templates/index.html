@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction Platform</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color:antiquewhite;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: grey;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffb300;
+        }
+
+        /* Hero Section */
+        #hero {
+            text-align: center;
+            padding: 80px 20px;
+            background-color: rgb(241, 241, 157);
+            color: white;
+        }
+
+        #hero h2 {
+            font-size: 3em;
+        }
+
+        #hero p {
+            font-size: 1.4em;
+            margin: 20px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background: #ffb300;
+            color: #333;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #e69a00;
+        }
+
+        /* Sections */
+        section {
+            padding: 50px 20px;
+            text-align: center;
+            background: white;
+            margin: 30px auto;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            width: 80%;
+        }
+
+        section h2 {
+            color: #174ea6;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        /* Features */
+        #features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #features li {
+            font-size: 1.2em;
+            margin: 12px 0;
+        }
+
+        /* Services */
+        .service-box {
+            display: inline-block;
+            width: 28%;
+            margin: 20px;
+            padding: 25px;
+            background: #e8f0fe;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-box:hover {
+            transform: translateY(-8px);
+        }
+
+        .service-box h3 {
+            color: #174ea6;
+        }
+
+        /* Contact */
+        #contact {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        #contact p {
+            font-size: 1.3em;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #174ea6;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Disease Prediction & Health Analysis</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('services') }}">Services</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('admin') }}">Admin access</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="hero">
+        <h2 style="color: #1a1a1a;">Predict Diseases Early with AI</h2>
+        <p style="color:#333;">Get accurate health insights and early disease detection using our AI and ML-powered platform.</p>
+        <a href="{{ url_for('services') }}" class="btn">Start Prediction</a>
+    </section>
+
+    <section id="features" style="background-color: #7dcded;">
+        <h2>Key Features</h2>
+        <ul>
+            <li>AI-powered Disease Prediction</li>
+            <li>Symptom-Based Diagnosis</li>
+            <li>Personalized Health Insights</li>
+            <li>Secure and Private Data Handling</li>
+            <li>Live Chat Support</li>
+            <li>Health Tips & Blogs</li>
+        </ul>
+    </section>
+
+    <footer style="background-color: grey;">
+        <p>&copy; 2025 HealthPredict. All rights reserved.</p>
+    </footer>
+</body>
+</html>

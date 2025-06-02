@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction Platform</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: antiquewhite;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: grey;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 12px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 8px 15px;
+            border-radius: 6px;
+            transition: background 0.3s ease-in-out;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255, 179, 0, 0.8);
+        }
+
+        /* Main Container */
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgb(185, 233, 110);
+            border-radius: 12px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h2 {
+            color: #174ea6;
+            font-size: 2.2em;
+            margin-bottom: 15px;
+        }
+
+        /* Service Boxes */
+        .service-box {
+            display: inline-block;
+            width: 30%;
+            margin: 15px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
+            color: #174ea6;
+            font-size: 1.3em;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: grey;
+            color: white;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Disease Prediction & Health Analysis</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('services') }}">Services</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('admin') }}">Admin Access</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Choose a Health Analysis Service</h2>
+        <a href="{{ url_for('diabetes') }}" class="service-box">Diabetes Prediction</a>
+        <a href="{{ url_for('heart') }}" class="service-box">Heart Disease Prediction</a>
+        <a href="{{ url_for('liver') }}" class="service-box">Liver Disease Prediction</a>
+    </div>
+<br><br><br><br><br>
+    <footer>
+        <p>&copy; 2025 HealthPredict. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction Platform</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: antiquewhite;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color:grey;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffb300;
+        }
+
+        /* Hero Section */
+        #hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(to right, #ffb300, #e69a00);
+            color: white;
+        }
+
+        #hero h2 {
+            font-size: 2.5em;
+        }
+
+        #hero p {
+            font-size: 1.4em;
+            margin: 20px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background: #fff;
+            color: #e69a00;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .btn:hover {
+            background: #e69a00;
+            color: white;
+        }
+
+        /* Form Section */
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #174ea6;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #ffb300;
+            border: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #e69a00;
+        }
+
+        #result {
+            text-align: center;
+            font-size: 1.4em;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background:grey;
+            color: white;
+            margin-top: 20px;
+            font-size: 1em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 80%;
+            }
+
+            #hero h2 {
+                font-size: 2em;
+            }
+
+            #hero p {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Disease Prediction & Health Analysis</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('services') }}">Services</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('admin') }}">Admin Access</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <h2>Predict Your Health Risks</h2>
+        <p>Enter your medical details to analyze potential health concerns.</p>
+    </section>
+
+    <div class="container">
+        <h2>Enter Your Details</h2>
+        <form id="predictionForm">
+            <div class="form-group">
+                <label>Pregnancies (0 - 15)</label>
+                <input type="number" name="pregnancies"  required>
+            </div>
+            <div class="form-group">
+                <label>Glucose Level (50 - 200 mg/dL)</label>
+                <input type="number" name="glucose" required>
+            </div>
+            <div class="form-group">
+                <label>Distolic Blood Pressure (25 - 150 mmHg)</label>
+                <input type="number" name="bloodPressure" required>
+            </div>
+            <div class="form-group">
+                <label>Skin Thickness (0 - 99 mm)</label>
+                <input type="number" name="skinThickness" required>
+            </div>
+            <div class="form-group">
+                <label>Insulin Level (0 - 276 μU/mL)</label>
+                <input type="number" name="insulin" required>
+            </div>
+            <div class="form-group">
+                <label>BMI (10 - 50 kg/m²)</label>
+                <input type="number" name="bmi" quired>
+            </div>
+            <div class="form-group">
+                <label>Diabetes Pedigree Function (0.1 - 2.5)</label>
+                <input type="number"  name="diabetesPedigreeFunction"  required>
+            </div>
+            <div class="form-group">
+                <label>Age (10 - 100 years)</label>
+                <input type="number" name="age" required>
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+        <h3 id="result"></h3>
+    </div>
+    
+    <footer>© 2025 Disease Prediction. All rights reserved.</footer>
+
+    <script>
+        document.getElementById("predictionForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let formData = new FormData(this);
+
+            fetch("/predict", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                let resultElement = document.getElementById("result");
+                resultElement.innerText = "Prediction: " + data.prediction;
+                resultElement.style.color = data.prediction === "Diabetic" ? "red" : "green";
+            })
+            .catch(error => console.log("Error:", error));
+        });
+    </script>
+</body>
+</html>
