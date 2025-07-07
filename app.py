@@ -9,6 +9,7 @@ diabetes_model = joblib.load(r"C:\Users\Dell\OneDrive\Desktop\ML project\model\d
 heart_model = joblib.load(r"C:\Users\Dell\OneDrive\Desktop\ML project\model\heart_model.pkl")  
 liver_model = joblib.load(r"C:\Users\Dell\OneDrive\Desktop\ML project\model\liver_disease_model.pkl")  
 
+# Routes to render HTML pages
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -37,7 +38,10 @@ def heart():
 def liver():
     return render_template("liver.html")
 
-# Diabetes Prediction Route
+
+# ================================
+# ✅ DIABETES Prediction Route
+# ================================
 @app.route("/predict", methods=["POST"])
 def predict():
     try:
@@ -48,7 +52,9 @@ def predict():
     except Exception as e:
         return jsonify({"error": str(e)})
 
-# Heart Disease Prediction Route
+# ================================
+# ✅ HEART Disease Prediction Route
+# ================================
 @app.route("/predict_heart", methods=["POST"])
 def predict_heart():
     try:
@@ -59,30 +65,25 @@ def predict_heart():
     except Exception as e:
         return jsonify({"error": str(e)})
 
-# Liver Disease Prediction Route
+# ================================
+# ✅ LIVER Disease Prediction Route (fixed to use form data)
+# ================================
 @app.route("/predict_liver", methods=["POST"])
 def predict_liver():
     try:
-        req_data = request.get_json()
-
-        data = [
-            float(req_data["age"]),
-            float(req_data["gender"]),
-            float(req_data["total_bilirubin"]),
-            float(req_data["direct_bilirubin"]),
-            float(req_data["alk_phos"]),
-            float(req_data["alt"]),
-            float(req_data["ast"]),
-            float(req_data["total_protein"]),
-            float(req_data["albumin"]),
-            float(req_data["agr"])
-        ]
-
+        data = [float(request.form[key]) for key in [
+            "age", "gender", "total_bilirubin", "direct_bilirubin",
+            "alk_phos", "alt", "ast", "total_protein", "albumin", "agr"
+        ]]
         prediction = liver_model.predict([np.array(data)])[0]
         result = "Has Liver Problem" if prediction == 2 else "No Liver Problem"
         return jsonify({"prediction": result})
     except Exception as e:
         return jsonify({"error": str(e)})
 
+
+# ================================
+# ✅ Run the Flask app
+# ================================
 if __name__ == "__main__":
     app.run(debug=True)
