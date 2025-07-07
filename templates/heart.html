@@ -247,24 +247,21 @@
     <footer>© 2025 Disease Prediction. All rights reserved.</footer>
 
     <script>
-         document.getElementById("predictionFormm").addEventListener("submit", function(event) {
+        document.getElementById("predictionFormm").addEventListener("submit", function(event) {
             event.preventDefault();
-            const form = event.target;
-            const Age = parseInt(form.Age.value);
-    
-            let prediction = "";
-    
-            if (Age === 57) {
-                prediction = "Has Heart Problem";
-            } else if (Age === 17) {
-                prediction = "Doest Have Heart Problem";
-            } else {
-                prediction = Math.random() < 0.5 ? "Has Heart Problem" : "Has Heart Problem";
-            }
-    
-            let resultElement = document.getElementById("result");
-            resultElement.innerText = "Prediction: " + prediction;
-            resultElement.style.color = prediction.includes("Has") ? "red" : "green";
+            let formData = new FormData(this);
+
+            fetch("/predict", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                let resultElement = document.getElementById("result");
+                resultElement.innerText = "Prediction: " + data.prediction;
+                resultElement.style.color = data.prediction === "Heart Problem" ? "red" : "green";
+            })
+            .catch(error => console.log("Error:", error));
         });
     </script>
 </body>
