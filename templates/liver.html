@@ -185,22 +185,19 @@
     <script>
         document.getElementById("liverForm").addEventListener("submit", function(event) {
             event.preventDefault();
-            const form = event.target;
-            const age = parseInt(form.age.value);
-    
-            let prediction = "";
-    
-            if (age === 57) {
-                prediction = "Has Liver Disease";
-            } else if (age === 17) {
-                prediction = "No Liver Disease";
-            } else {
-                prediction = Math.random() < 0.5 ? "Has Liver Disease" : "No Liver Disease";
-            }
-    
-            let resultElement = document.getElementById("result");
-            resultElement.innerText = "Prediction: " + prediction;
-            resultElement.style.color = prediction.includes("Has") ? "red" : "green";
+            let formData = new FormData(this);
+
+            fetch("/predict", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                let resultElement = document.getElementById("result");
+                resultElement.innerText = "Prediction: " + data.prediction;
+                resultElement.style.color = data.prediction === "Liver Problem" ? "red" : "green";
+            })
+            .catch(error => console.log("Error:", error));
         });
     </script>
         
